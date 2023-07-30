@@ -140,7 +140,8 @@ class AdminController extends Controller
         return view('backend.pages.admin.edit_admin', compact('roles', 'user'));
     }
 
-    public function UpdateAdmin(Request $request){
+    public function UpdateAdmin(Request $request)
+    {
         $user = User::findOrFail($request->id);
         $user->username = $request->username;
         $user->name = $request->name;
@@ -159,5 +160,17 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('all.admin')->with($notification);
+    }
+
+    public function DeleteAdmin($id){
+        $user = User::findOrFail($id);
+        if (!is_null($user)) {
+            $user->delete();
+        }
+        $notification = array(
+            'message' => 'New Admin User Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

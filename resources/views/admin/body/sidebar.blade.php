@@ -19,44 +19,58 @@
                 </a>
             </li>
             <li class="nav-item nav-category">RealEstate</li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
-                    aria-controls="emails">
-                    <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Property Type</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="emails">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('all.type') }}" class="nav-link">All Type</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('add.type') }}" class="nav-link">Add Type</a>
-                        </li>
+            @if (Auth::user()->can('Type Menu'))
 
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
-                    aria-controls="emails">
-                    <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Amenities</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="emails">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('all.amentitie') }}" class="nav-link">All Amenities</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">Add Amenities</a>
-                        </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
+                        aria-controls="emails">
+                        <i class="link-icon" data-feather="mail"></i>
+                        <span class="link-title">Property Type</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="emails">
+                        <ul class="nav sub-menu">
+                            @if (Auth::user()->can('All Type'))
+                                <li class="nav-item">
+                                    <a href="{{ route('all.type') }}" class="nav-link">All Type</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->can('Add Type'))
+                                <li class="nav-item">
+                                    <a href="{{ route('add.type') }}" class="nav-link">Add Type</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+            @endif
 
-                    </ul>
-                </div>
-            </li>
+
+            @if (Auth::user()->can('Amentities Menu'))
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
+                        aria-controls="emails">
+                        <i class="link-icon" data-feather="mail"></i>
+                        <span class="link-title">Amenities</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="emails">
+                        <ul class="nav sub-menu">
+                            @if (Auth::user()->can('Amentities All'))
+                            <li class="nav-item">
+                                <a href="{{ route('all.amentitie') }}" class="nav-link">All Amenities</a>
+                            </li>
+                            @endif
+                            @if (Auth::user()->can('Amentities Add'))
+                            <li class="nav-item">
+                                <a href="{{ route('add.amentitie') }}" class="nav-link">Add Amenities</a>
+                            </li>
+                            @endif
+
+                        </ul>
+                    </div>
+                </li>
+            @endif
 
             <li class="nav-item nav-category">Role & Permission</li>
             <li class="nav-item">
@@ -104,7 +118,7 @@
 
 
 
-           
+
         </ul>
     </div>
 </nav>

@@ -33,10 +33,14 @@
                                             <td>{{ $value->amenitis_name }}</td>
 
                                             <td>
-                                                <a href="{{ route('edit.amentitie', $value->id) }}"
-                                                    class="btn btn-inverse-warning">Edit</a>
-                                                <a href="{{ route('delete.amentitie', $value->id) }}"
-                                                    class="btn btn-inverse-danger" id="delete">Delete</a>
+                                                @if (Auth::user()->can('Amentities Edit'))
+                                                    <a href="{{ route('edit.amentitie', $value->id) }}"
+                                                        class="btn btn-inverse-warning">Edit</a>
+                                                @endif
+                                                @if (Auth::user()->can('Amentities Delete'))
+                                                    <a href="{{ route('delete.amentitie', $value->id) }}"
+                                                        class="btn btn-inverse-danger" id="delete">Delete</a>
+                                                @endif
                                             </td>
 
                                         </tr>

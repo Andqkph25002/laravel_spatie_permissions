@@ -33,9 +33,17 @@
                                             <td>{{ $value->type_name }}</td>
                                             <td>{{ $value->type_icon }}</td>
                                             <td>
-                                                <a href="{{ route('edit.type', $value->id) }}"
-                                                    class="btn btn-inverse-warning">Edit</a>
-                                                <a href="{{ route('delete.type' , $value->id) }}" class="btn btn-inverse-danger" id="delete">Delete</a>
+                                                @if (Auth::user()->can('Edit Type'))
+                                                    <a href="{{ route('edit.type', $value->id) }}"
+                                                        class="btn btn-inverse-warning">Edit</a>
+                                                @endif
+
+                                                @if (Auth::user()->can('Delete Type'))
+                                                    <a href="{{ route('delete.type', $value->id) }}"
+                                                        class="btn btn-inverse-danger" id="delete">Delete</a>
+                                                @endif
+
+
                                             </td>
 
                                         </tr>
